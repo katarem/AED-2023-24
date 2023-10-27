@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="vista" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="147.0" layoutY="28.0" text="Registrar Boletín">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="88.0" text="Nombre" />
+      <Label layoutX="45.0" layoutY="123.0" text="Fecha" />
+      <Label layoutX="45.0" layoutY="183.0" text="Número de páginas" />
+      <Label layoutX="45.0" layoutY="223.0" text="Precio" />
+      <TextField layoutX="98.0" layoutY="84.0" prefHeight="25.0" prefWidth="270.0" />
+      <TextField layoutX="98.0" layoutY="119.0" prefHeight="25.0" prefWidth="250.0" />
+      <TextField layoutX="159.0" layoutY="179.0" prefHeight="25.0" prefWidth="55.0" />
+      <TextField layoutX="85.0" layoutY="219.0" prefHeight="25.0" prefWidth="65.0" />
+   </children>
+</AnchorPane>

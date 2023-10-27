@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="vista" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="50.0" layoutY="87.0" text="Título" />
+      <Label layoutX="185.0" layoutY="25.0" text="Registrar revista">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="122.0" text="Autor" />
+      <Label layoutX="50.0" layoutY="160.0" text="Editorial" />
+      <Label layoutX="50.0" layoutY="202.0" text="Mail de contacto" />
+      <Label layoutX="28.0" layoutY="253.0" text="Número de páginas" />
+      <Label layoutX="34.0" layoutY="288.0" text="Precio" />
+      <Label layoutX="385.0" layoutY="253.0" text="Formato" />
+      <TextField fx:id="titleText" layoutX="109.0" layoutY="83.0" prefHeight="25.0" prefWidth="327.0" />
+      <TextField fx:id="autorText" layoutX="108.0" layoutY="118.0" prefHeight="25.0" prefWidth="327.0" />
+      <TextField fx:id="editorialText" layoutX="162.0" layoutY="156.0" prefHeight="25.0" prefWidth="317.0" />
+      <TextField fx:id="emailText" layoutX="162.0" layoutY="198.0" prefHeight="25.0" prefWidth="317.0" />
+      <TextField fx:id="precioText" layoutX="72.0" layoutY="284.0" prefHeight="25.0" prefWidth="85.0" />
+      <TextField fx:id="paginasText" layoutX="154.0" layoutY="249.0" prefHeight="25.0" prefWidth="62.0" />
+      <ChoiceBox fx:id="formatoChoice" layoutX="358.0" layoutY="276.0" prefHeight="25.0" prefWidth="100.0" />
+   </children>
+</AnchorPane>
