@@ -6,12 +6,13 @@ import aed.practica1.C.objs.Vehiculo;
 import aed.practica1.C.ui.DevolverController;
 import aed.practica1.C.ui.ListController;
 import aed.practica1.C.ui.alquiler.AlquilerController;
+import aed.practica1.C.utils.Alertas;
 import aed.practica1.C.utils.Garaje;
+import aed.practica1.C.utils.Generador;
 import aed.practica1.C.utils.Listar;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -24,13 +25,9 @@ public class HomeController implements Initializable {
     @FXML
     private BorderPane view;
 
-
     private ListController listController;
 
     private DevolverController devolverController;
-
-    private Turismo coche;
-    private Camion camion;
 
     //Controlador lee la vista para representarla
     public HomeController(){
@@ -45,9 +42,9 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Garaje.setGaraje(Listar.generarDatos(10));
+        Garaje.setGaraje(Generador.generarDatos(12));
         listController = new ListController();
-        //devolverController = new DevolverController();
+        devolverController = new DevolverController();
         listController.update();
     }
 
@@ -65,11 +62,26 @@ public class HomeController implements Initializable {
         listController.show();
     }
 
+    @FXML
     private void devolverVehiculos(){
-        var vehiculoDevuelto = devolverController.show().orElseThrow();
-        Garaje.replace(vehiculoDevuelto);
-        listController.update();
-        success("Vehículo devuelto con éxito","El vehículo con matrícula " + vehiculoDevuelto.getMatricula());
+        Turismo turismo;
+        Camion camion;
+        var vehiculoOptional = devolverController.show();
+        if(vehiculoOptional.isPresent()){
+            var vehiculoDevuelto = vehiculoOptional.get();
+            Garaje.replace(vehiculoDevuelto);
+            listController.update();
+            if(vehiculoDevuelto instanceof Turismo) {
+                turismo = (Turismo) vehiculoDevuelto;
+                Alertas.success("Vehículo devuelto con éxito",String.format("Se devuelve el %s con matrícula %s con %d días.\n-> Cantidad a pagar: %.2f€","turismo",turismo.getMatricula(),turismo.getDiasAlquiler(),turismo.importeFinal()));
+            }else{
+                camion = (Camion) vehiculoDevuelto;
+                Alertas.success("Vehículo devuelto con éxito",String.format("Se devuelve el %s con matrícula %s con %d días.\n-> Cantidad a pagar: %.2f€","camion",camion.getMatricula(),camion.getDiasAlquiler(),camion.importeFinal()));
+            }
+        }
+        else{
+            Alertas.showError("Operación no realizada","Formulario no completo.");
+        }
     }
 
 
@@ -89,24 +101,14 @@ public class HomeController implements Initializable {
         Optional<Vehiculo> o = ac.deposito();
         if(o.isPresent()){
             var vehiculoAlquilado = o.get();
-            if(vehiculoAlquilado instanceof Turismo) coche = (Turismo) vehiculoAlquilado;
-            else camion = (Camion) vehiculoAlquilado;
+            if(vehiculoAlquilado instanceof Turismo) Alertas.success("Coche alquilado con éxito",String.format("Total turismos: %d Alquilados: %s",Turismo.COCHES_TOTALES,Listar.mostrar().split("\n")[1].split("=")[1]));
+            else Alertas.success("Camión alquilado con éxito",String.format("Total camiones: %d Alquilados: %s",Camion.CAMIONES_TOTALES,Listar.mostrar().split("\n")[3].split("=")[1]));
             Garaje.replace(vehiculoAlquilado);
-            success("Alquiler exitoso","Ha alquilado el " + (coche==null ? "camión" : "coche") + " con matrícula " + vehiculoAlquilado.getMatricula() + " durante " +
-                            (coche == null ? camion.getDiasAlquiler() : coche.getDiasAlquiler()) + " días.\n" + "El importe final será de " + String.format("%.2f€",(coche == null ? camion.importeFinal() : coche.importeFinal()))
-                    );
             listController.update();
         }
+        else{
+            Alertas.showError("Opeeración no realizada","Formulario no completo.");
+        }
+
     }
-
-    private void success(String title, String msg){
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setTitle(title);
-        a.setHeaderText(msg);
-        a.showAndWait();
-    }
-
-
-
-
 }

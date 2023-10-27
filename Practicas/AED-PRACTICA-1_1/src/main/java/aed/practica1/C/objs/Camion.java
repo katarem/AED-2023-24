@@ -6,15 +6,8 @@ public class Camion extends Vehiculo implements Coste{
 
     protected double precioDia;
     protected int diasAlquiler = 0, diasDevolucion = 0;
-    public Camion(String matricula, double precioDia, boolean estadoAlquiler) { super(matricula, estadoAlquiler); this.precioDia = precioDia; CAMIONES_TOTALES++;}
 
-    //Constrructor pedido
-    public Camion(String matricula, boolean estadoAlquiler) { super(matricula, estadoAlquiler); }
-
-    public Camion(String matricula, double precioDia) { super(matricula, false); this.precioDia = precioDia; CAMIONES_TOTALES++;}
-
-    public Camion(String matricula, int diasAlquiler) { this(matricula, true); this.diasAlquiler = diasAlquiler;}
-
+    public Camion(String matricula, boolean estadoAlquiler){ super(matricula, estadoAlquiler); CAMIONES_TOTALES++; }
 
     public void setDiasAlquiler(int diasAlquiler) {
         this.diasAlquiler = diasAlquiler;
@@ -71,7 +64,7 @@ public class Camion extends Vehiculo implements Coste{
                 Matrícula: %s
                 Alquilado: %s
                 Precio por día: %.2f €
-                ------------------------------
+                -------------------------------------------
                 ""","Camión", matricula, (alquilado ? "Si" : "No"), precioDia);
     }
 }

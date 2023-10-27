@@ -8,7 +8,7 @@ public class Turismo extends Vehiculo implements Coste{
     protected int diasAlquiler = 0, diasDevolucion = 0;
 
 
-    public Turismo(String matricula, boolean estadoAlquiler){ super(matricula, estadoAlquiler);}
+    public Turismo(String matricula, boolean estadoAlquiler){ super(matricula, estadoAlquiler); COCHES_TOTALES++; }
     @Override
     public double importeFinal() {
         return (diasAlquiler+diasDevolucion) * precioDia;
@@ -48,7 +48,7 @@ public class Turismo extends Vehiculo implements Coste{
                 Matrícula: %s
                 Alquilado: %s
                 Precio por día: %.2f €
-                ------------------------------
+                -------------------------------------------
                 ""","Turismo", matricula, (alquilado ? "Si" : "No"), precioDia);
     }
 }

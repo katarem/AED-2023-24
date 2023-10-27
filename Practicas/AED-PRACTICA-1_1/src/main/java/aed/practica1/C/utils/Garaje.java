@@ -1,5 +1,7 @@
 package aed.practica1.C.utils;
 
+import aed.practica1.C.objs.Camion;
+import aed.practica1.C.objs.Turismo;
 import aed.practica1.C.objs.Vehiculo;
 import aed.practica1.C.ui.ListController;
 
