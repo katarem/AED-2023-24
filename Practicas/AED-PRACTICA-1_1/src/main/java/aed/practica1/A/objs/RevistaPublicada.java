@@ -10,12 +10,14 @@ public class RevistaPublicada extends ArticulosPublicados{
     public RevistaPublicada() {
     }
 
-    public RevistaPublicada(String titulo, String formato, String correo, String nombreAutor, String editorial) {
+    public RevistaPublicada(String titulo, String formato, String correo, String nombreAutor, String editorial, int numeroPaginas, float precio) {
         this.titulo = titulo;
         this.formato = formato;
         this.correo = correo;
         this.nombreAutor = nombreAutor;
         this.editorial = editorial;
+        this.numeroDePaginas = numeroPaginas;
+        this.precio = precio;
     }
 
     @Override

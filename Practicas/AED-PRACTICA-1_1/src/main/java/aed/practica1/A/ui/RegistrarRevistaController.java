@@ -51,16 +51,18 @@ public class RegistrarRevistaController implements Initializable {
         formatoChoice.setItems(FXCollections.observableList(valores));
 
         dialog.setResultConverter(e -> {
-
-           if(Validador.comprobarDatos(new ArrayList<String>(),true)){
-               var titulo = titleText.getText();
-                //TODO
-           }
-            return null;
+            var data = List.of(
+                    titleText.getText(),
+                    formatoChoice.getValue(),
+                    emailText.getText(),
+                    autorText.getText(),
+                    editorialText.getText(),
+                    paginasText.getText(),
+                    precioText.getText()
+            );
+            var resultado = Validador.comprobarDatos(data,true);
+            return  resultado == null ? null : (RevistaPublicada) resultado;
         });
-
-
-
 
     }
 

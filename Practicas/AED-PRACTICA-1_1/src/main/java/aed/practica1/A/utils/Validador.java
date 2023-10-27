@@ -1,6 +1,10 @@
 package aed.practica1.A.utils;
 
 import aed.practica1.A.exceptions.CampoVacioException;
+import aed.practica1.A.objs.ArticulosPublicados;
+import aed.practica1.A.objs.BoletinPublicado;
+import aed.practica1.A.objs.RevistaPublicada;
+import javafx.scene.control.Alert;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -53,8 +57,13 @@ public class Validador {
 
 
 
-    public static boolean comprobarFormato(String formato){
-        return !formato.equals("Formato");
+    public static void comprobarFormato(String formato){
+        try{
+            if(formato.equals("Formato")) throw new CampoVacioException("Formato no elegido");
+        } catch(CampoVacioException e){
+            pilaErrores.append(e.getMessage()).append("\n");
+            huboErrores = true;
+        }
     }
 
     public static boolean comprobarFecha(String fecha){
@@ -94,11 +103,14 @@ public class Validador {
         }
     }
 
-    public static boolean comprobarDatos(List<String> datosCampos, boolean isRevista){
+    public static ArticulosPublicados comprobarDatos(List<String> datosCampos, boolean isRevista){
 
        if(isRevista){
            //extraemos por campos
-           var mail = datosCampos.get(0);
+           var titulo = datosCampos.get(0);
+           var autor = datosCampos.get(1);
+           var editorial = datosCampos.get(2);
+           var mail = datosCampos.get(2);
            var numeroPaginas = datosCampos.get(1);
            var precio = datosCampos.get(2);
            var formato = datosCampos.get(3);
@@ -108,14 +120,26 @@ public class Validador {
            comprobarNumeroPaginas(numeroPaginas);
            comprobarPrecio(precio);
            comprobarFormato(formato);
+
+           if(huboErrores) Alertas.error(pilaErrores.toString());
+           else return new RevistaPublicada(titulo,formato,mail,autor,editorial,Integer.parseInt(numeroPaginas),Float.parseFloat(precio));
        } else{
-           //TODO
+           var nombre = datosCampos.get(0);
+           var fecha = datosCampos.get(1);
+           var numeroPaginas = datosCampos.get(2);
+           var precio = datosCampos.get(3);
+
+           comprobarFecha(fecha);
+           comprobarNumeroPaginas(numeroPaginas);
+           comprobarPrecio(precio);
+
+           if(nombre.isBlank() || nombre.isEmpty()){
+               pilaErrores.append("Falta el nombre.").append("\n");
+               huboErrores = true;
+           }
+           if(huboErrores) Alertas.error(pilaErrores.toString());
+           else return new BoletinPublicado(nombre,fecha,Integer.parseInt(numeroPaginas),Float.parseFloat(precio));
        }
-        return false;
+        return null;
     }
-
-
-
-
-
 }

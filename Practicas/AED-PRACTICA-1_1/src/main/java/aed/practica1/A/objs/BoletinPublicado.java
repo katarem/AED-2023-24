@@ -8,9 +8,11 @@ public class BoletinPublicado extends ArticulosPublicados{
     public BoletinPublicado() {
     }
 
-    public BoletinPublicado(String nombre, String fecha) {
+    public BoletinPublicado(String nombre, String fecha, int numeroPaginas,float precio) {
         this.nombre = nombre;
         this.fecha = fecha;
+        this.numeroDePaginas = numeroPaginas;
+        this.precio = precio;
     }
 
     @Override
