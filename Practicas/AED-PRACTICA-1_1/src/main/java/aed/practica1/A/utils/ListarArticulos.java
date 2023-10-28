@@ -7,11 +7,13 @@ public class ListarArticulos {
 
     public static String listarRevistas(){
         var sb = new StringBuilder();
+        sb.append("###################################\n");
         Almacen.getAlmacen().stream().filter(articulo -> articulo instanceof RevistaPublicada).forEach(sb::append);
         return sb.toString();
     }
     public static String listarBoletines(){
         var sb = new StringBuilder();
+        sb.append("###################################\n");
         Almacen.getAlmacen().stream().filter(articulo -> articulo instanceof BoletinPublicado).forEach(sb::append);
         return sb.toString();
     }

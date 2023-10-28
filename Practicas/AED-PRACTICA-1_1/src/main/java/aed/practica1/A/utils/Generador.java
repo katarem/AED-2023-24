@@ -10,8 +10,8 @@ public class Generador {
 
     public static List<ArticulosPublicados> generarArticulos(){
         return List.of(
-                new BoletinPublicado("Reparto de dividendos","5/10/2023"),
-                new RevistaPublicada("HobbyConsolas #120","Impreso","hobbyconsolas@gmail.com","Álvaro ALonso","Hobby")
+                new BoletinPublicado("Reparto de dividendos","5/10/2023",300,30.95f),
+                new RevistaPublicada("HobbyConsolas #120","Impreso","hobbyconsolas@gmail.com","Álvaro ALonso","Hobby",60,11.50f)
         );
     }
 

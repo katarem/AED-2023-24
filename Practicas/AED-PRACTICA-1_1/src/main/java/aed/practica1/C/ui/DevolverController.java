@@ -7,6 +7,7 @@ import aed.practica1.C.objs.Camion;
 import aed.practica1.C.objs.Turismo;
 import aed.practica1.C.objs.Vehiculo;
 import aed.practica1.C.utils.Garaje;
+import aed.practica1.C.utils.Listar;
 import aed.practica1.C.utils.Validador;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -98,8 +99,14 @@ public class DevolverController implements Initializable {
     private void checkDias() {
         try {
             diasDevolucion = Validador.validateDias(diasText.getText());
-            if (isCoche) alquiladosText.setText(String.valueOf(turismo.getDiasAlquiler()));
-            else alquiladosText.setText(String.valueOf(camion.getDiasAlquiler()));
+            if (isCoche) {
+                Listar.contCochesAlquilados--;
+                alquiladosText.setText("Días alquiler: " + turismo.getDiasAlquiler());
+            }
+            else{
+                Listar.contCamionesAlquilados--;
+                alquiladosText.setText("Días alquiler: " + camion.getDiasAlquiler());
+            }
             if (!vehiculoAlquilado.devolver(diasDevolucion)) throw new AlquilerNoAcabadoException("Aún no ha acabado el periodo de alquiler");
         } catch (DiasInvalidosException | NoSuchElementException e) {
             showError(e, "Número de días inválido");

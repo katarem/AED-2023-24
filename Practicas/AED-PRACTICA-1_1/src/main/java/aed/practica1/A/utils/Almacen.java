@@ -7,11 +7,9 @@ import java.util.List;
 
 public class Almacen {
 
-    private static List<ArticulosPublicados> almacen;
+    private static List<ArticulosPublicados> almacen = new ArrayList<>();
 
-    public static void setAlmacen(List<ArticulosPublicados> almacen) {
-        Almacen.almacen = almacen;
-    }
+    public static void addAll(List<ArticulosPublicados> articulosPublicados){ almacen.addAll(articulosPublicados);}
 
     public static List<ArticulosPublicados> getAlmacen() {
         return almacen;

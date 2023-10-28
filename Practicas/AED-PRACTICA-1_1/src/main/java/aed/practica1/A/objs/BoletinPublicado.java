@@ -17,11 +17,12 @@ public class BoletinPublicado extends ArticulosPublicados{
 
     @Override
     public String toString() {
-        return "BoletinPublicado{" +
-                "nombre='" + nombre + '\'' +
-                ", fecha='" + fecha + '\'' +
-                ", numeroDePaginas=" + numeroDePaginas +
-                ", precio=" + precio +
-                '}';
+        return String.format("""
+                Nombre: %s
+                Fecha: %s
+                Páginas: %d
+                Precio: %.2f€
+                ###################################
+                """,nombre,fecha,numeroDePaginas,precio);
     }
 }

@@ -1,4 +1,4 @@
-package aed.practica1.C.ui.alquiler;
+package aed.practica1.C.ui;
 
 import aed.practica1.C.exceptions.OcupadosException;
 import aed.practica1.C.objs.Camion;
@@ -6,6 +6,7 @@ import aed.practica1.C.objs.Turismo;
 import aed.practica1.C.objs.Vehiculo;
 import aed.practica1.C.utils.Alertas;
 import aed.practica1.C.utils.Garaje;
+import aed.practica1.C.utils.Listar;
 import aed.practica1.C.utils.Validador;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,7 +46,7 @@ public class AlquilerController implements Initializable {
     private Turismo coche;
     private Camion camion;
 
-    private boolean validDate =false;
+    private boolean validDate = false;
     public AlquilerController(){
         try{
             FXMLLoader f = new FXMLLoader(ClassLoader.getSystemResource("1_C/AlquilerView.fxml"));
@@ -113,8 +114,14 @@ public class AlquilerController implements Initializable {
     private void checkDiasAlquiler(){
         try {
             diasAlquiler = Validador.validateDias(diasText.getText());
-            if (isCoche) coche.alquilar(diasAlquiler);
-            else camion.alquilar(diasAlquiler);
+            validDate = true;
+            if (isCoche) {
+                Listar.contCochesAlquilados++;
+                coche.alquilar(diasAlquiler);}
+            else {
+                Listar.contCamionesAlquilados++;
+                camion.alquilar(diasAlquiler);
+            }
         } catch(NumberFormatException e){
             Alertas.showError(e, "Días inválidos");
         }

@@ -22,14 +22,14 @@ public class RevistaPublicada extends ArticulosPublicados{
 
     @Override
     public String toString() {
-        return "RevistaPublicada{" +
-                "titulo='" + titulo + '\'' +
-                ", formato='" + formato + '\'' +
-                ", correo='" + correo + '\'' +
-                ", nombreAutor='" + nombreAutor + '\'' +
-                ", editorial='" + editorial + '\'' +
-                ", numeroDePaginas=" + numeroDePaginas +
-                ", precio=" + precio +
-                '}';
+        return String.format("""
+                Titulo: %s
+                Autor: %s
+                Correo: %s
+                Editorial: %s
+                Páginas: %d
+                Precio: %.2f€
+                ###################################
+                """,titulo,nombreAutor,correo,editorial,numeroDePaginas,precio);
     }
 }

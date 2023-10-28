@@ -2,15 +2,14 @@ package aed.practica1.A.ui;
 
 import aed.practica1.A.objs.Formatos;
 import aed.practica1.A.objs.RevistaPublicada;
+import aed.practica1.A.utils.Alertas;
 import aed.practica1.A.utils.Validador;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -19,7 +18,7 @@ import java.util.*;
 
 public class RegistrarRevistaController implements Initializable {
 
-    private Dialog<RevistaPublicada> dialog;
+    private Dialog<RevistaPublicada> dialog = new Dialog<>();
 
     @FXML
     private AnchorPane vista;
@@ -49,7 +48,11 @@ public class RegistrarRevistaController implements Initializable {
             valores.add(f.name());
         }
         formatoChoice.setItems(FXCollections.observableList(valores));
-
+        formatoChoice.setValue("Formato");
+        DialogPane dp = new DialogPane();
+        dp.setContent(vista);
+        dp.getButtonTypes().add(ButtonType.OK);
+        dialog.setDialogPane(dp);
         dialog.setResultConverter(e -> {
             var data = List.of(
                     titleText.getText(),
@@ -61,7 +64,12 @@ public class RegistrarRevistaController implements Initializable {
                     precioText.getText()
             );
             var resultado = Validador.comprobarDatos(data,true);
-            return  resultado == null ? null : (RevistaPublicada) resultado;
+            if(resultado == null){
+                Alertas.error(Validador.pilaErrores.toString());
+                Validador.pilaErrores.setLength(0);
+                return null;
+            }
+            else return (RevistaPublicada) resultado;
         });
 
     }

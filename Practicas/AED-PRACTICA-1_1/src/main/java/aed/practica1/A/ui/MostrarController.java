@@ -4,10 +4,7 @@ import aed.practica1.A.utils.ListarArticulos;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -22,7 +19,10 @@ public class MostrarController implements Initializable {
     @FXML
     private TextArea contentArea;
 
-    private Dialog dialog;
+    @FXML
+    private Label articuloLabel;
+
+    private final Dialog dialog = new Dialog();
 
     public MostrarController(){
         try{
@@ -30,13 +30,19 @@ public class MostrarController implements Initializable {
             f.setController(this);
             f.load();
         } catch (IOException e){
-
+            e.printStackTrace();
         }
     }
 
     public void setContent(String type){
-        if(type.equals("revistas")) contentArea.setText(ListarArticulos.listarRevistas());
-        else contentArea.setText(ListarArticulos.listarBoletines());
+        if(type.equals("revistas")){
+            contentArea.setText(ListarArticulos.listarRevistas());
+            articuloLabel.setText("Revistas");
+        }
+        else{
+            contentArea.setText(ListarArticulos.listarBoletines());
+            articuloLabel.setText("Boletines");
+        }
     }
 
 

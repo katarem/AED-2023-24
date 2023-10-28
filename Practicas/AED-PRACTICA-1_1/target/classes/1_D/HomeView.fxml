@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="vista" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="CREAR FICHERO DE TEXTO">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#seleccionarFichero" text="Elegir nombre y ruta del archivo" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox alignment="TOP_CENTER" prefHeight="135.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#exit" text="Salir" />
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo" />
+          <Menu mnemonicParsing="false" text="Contar">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#letrasScreen" text="Letras" />
+                  <MenuItem mnemonicParsing="false" onAction="#palabrasScreen" text="Palabras" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

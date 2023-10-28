@@ -17,10 +17,12 @@ public class Generador {
         var type = sr.nextInt(101);
         if(type > 50){
             var t = new Turismo(generarMatricula(),isAlquilado());
+            if(t.isAlquilado())t.setDiasAlquiler(diasAlquiler());
             t.setPrecioDia(generarPrecioDia());
             return t;
         }
         var c = new Camion(generarMatricula(),isAlquilado());
+        if(c.isAlquilado())c.setDiasAlquiler(diasAlquiler());
         c.setPrecioDia(generarPrecioDia());
         return c;
     }
@@ -46,6 +48,8 @@ public class Generador {
     private static boolean isAlquilado(){
         return sr.nextBoolean();
     }
+
+    private static int diasAlquiler(){ return sr.nextInt(90)+1;}
 
 
     private static double generarPrecioDia(){

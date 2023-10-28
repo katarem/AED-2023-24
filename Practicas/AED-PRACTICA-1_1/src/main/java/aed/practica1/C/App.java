@@ -1,6 +1,6 @@
 package aed.practica1.C;
 
-import aed.practica1.C.ui.home.HomeController;
+import aed.practica1.C.ui.HomeController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

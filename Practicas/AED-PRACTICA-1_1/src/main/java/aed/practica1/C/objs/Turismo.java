@@ -14,6 +14,10 @@ public class Turismo extends Vehiculo implements Coste{
         return (diasAlquiler+diasDevolucion) * precioDia;
     }
 
+    public void setDiasAlquiler(int diasAlquiler) {
+        this.diasAlquiler = diasAlquiler;
+    }
+
     @Override
     public void alquilar(int numDias) {
         alquilado = true;

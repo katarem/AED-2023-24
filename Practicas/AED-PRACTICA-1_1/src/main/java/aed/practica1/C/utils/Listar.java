@@ -9,10 +9,13 @@ import java.util.ArrayList;
 
 public class Listar {
 
+    public static int contCochesAlquilados = 0, contCamionesAlquilados = 0;
+
     public static String mostrar(){
-        var garaje = Garaje.getGaraje();
-        var contCochesAlquilados = garaje.stream().filter(e -> e instanceof Turismo).filter(e -> ((Turismo) e).isAlquilado()).count();
-        var contCamionesAlquilados = garaje.stream().filter(e -> e instanceof Camion).filter(e -> ((Camion) e).isAlquilado()).count();
+        if(contCochesAlquilados<1)
+            setCochesAlquilados();
+        if(contCamionesAlquilados<1)
+            setCamionesAlquilados();
         return String.format("""
                 ######RESUMEN######
                 --> TOTAL COCHES = %d
@@ -27,6 +30,15 @@ public class Listar {
         Garaje.getGaraje().forEach(e -> System.out.println(e.mostrarInformacion()));
     }
 
+    private static void setCochesAlquilados(){
+        var garaje = Garaje.getGaraje();
+        contCochesAlquilados = (int) garaje.stream().filter(e -> e instanceof Turismo).filter(e -> ((Turismo) e).isAlquilado()).count();
 
+    }
+
+    private static void setCamionesAlquilados(){
+        var garaje = Garaje.getGaraje();
+        contCamionesAlquilados = (int) garaje.stream().filter(e -> e instanceof Camion).filter(e -> ((Camion) e).isAlquilado()).count();
+    }
 
 }

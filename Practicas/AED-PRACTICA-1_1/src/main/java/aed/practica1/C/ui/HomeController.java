@@ -1,11 +1,8 @@
-package aed.practica1.C.ui.home;
+package aed.practica1.C.ui;
 
 import aed.practica1.C.objs.Camion;
 import aed.practica1.C.objs.Turismo;
 import aed.practica1.C.objs.Vehiculo;
-import aed.practica1.C.ui.DevolverController;
-import aed.practica1.C.ui.ListController;
-import aed.practica1.C.ui.alquiler.AlquilerController;
 import aed.practica1.C.utils.Alertas;
 import aed.practica1.C.utils.Garaje;
 import aed.practica1.C.utils.Generador;
@@ -101,8 +98,8 @@ public class HomeController implements Initializable {
         Optional<Vehiculo> o = ac.deposito();
         if(o.isPresent()){
             var vehiculoAlquilado = o.get();
-            if(vehiculoAlquilado instanceof Turismo) Alertas.success("Coche alquilado con éxito",String.format("Total turismos: %d Alquilados: %s",Turismo.COCHES_TOTALES,Listar.mostrar().split("\n")[1].split("=")[1]));
-            else Alertas.success("Camión alquilado con éxito",String.format("Total camiones: %d Alquilados: %s",Camion.CAMIONES_TOTALES,Listar.mostrar().split("\n")[3].split("=")[1]));
+            if(vehiculoAlquilado instanceof Turismo) Alertas.success("Coche alquilado con éxito",String.format("Total turismos: %d Alquilados: %s",Turismo.COCHES_TOTALES,Listar.contCochesAlquilados));
+            else Alertas.success("Camión alquilado con éxito",String.format("Total camiones: %d Alquilados: %s",Camion.CAMIONES_TOTALES,Listar.contCamionesAlquilados));
             Garaje.replace(vehiculoAlquilado);
             listController.update();
         }
