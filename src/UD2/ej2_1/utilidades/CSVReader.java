@@ -12,7 +12,7 @@ import java.util.logging.*;
 
 public class CSVReader {
 
-    private static Logger logger;
+    private final static Logger logger;
 
     static {
         logger = Logger.getLogger(CSVReader.class.getName());
@@ -87,19 +87,4 @@ public class CSVReader {
             throw new RuntimeException(e);
         }
     }
-
-
-    //DEBUG ONLY
-    public static void deleteBinario(){
-        try{
-            File f = new File(BINARIOPATH);
-            var eliminado = f.delete();
-            if(eliminado) logger.info("Se ha eliminado el archivo con éxito");
-            else logger.warning("No se eliminó el archivo");
-        } catch(NullPointerException | SecurityException e){
-            logger.severe(e.getMessage());
-            throw new RuntimeException(e);
-        }
-    }
-
 }
